@@ -49,7 +49,7 @@ function DetectDevice(){
 	clear;
 	if test -z "$(DeviceInfo SerialNumber)";
 		then
-			sleep 1; clear; 
+			sleep 1.5; clear; 
 			echo "DEVICE UNDETECTED, PLEASE CONNECT YOUR DEVICE.";
 			DetectDevice;
 		else
