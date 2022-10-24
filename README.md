@@ -20,10 +20,10 @@ __1: Open git-bash.exe__
 
 # COMMANDS 
 
+***git clone https://github.com/Brayan-Villa/iCloud-Bypass-iOS-14 ~/Desktop/iCloud-Bypass-iOS-14***
 
 
-<sub>git clone https://github.com/Brayan-Villa/iCloud-Bypass-iOS-14 ~/Desktop/iCloud-Bypass-iOS-14<sub/>
+***cd ~/Desktop/iCloud-Bypass-iOS-14/***
 
-cd ~/Desktop/iCloud-Bypass-iOS-14/
  
-./Activate2.2.sh
+***./Activate2.2.sh***
