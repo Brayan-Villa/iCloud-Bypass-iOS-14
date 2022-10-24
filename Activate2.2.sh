@@ -60,13 +60,28 @@ function DetectDevice(){
 			DetectDevice;
 		else
 			echo "DEVICE DETECTED!"; sleep 2; clear;
-			echo -e "\nSHOW IDENTIFIERS\n=================================\n";
-			echo -e "ActivationState: $(DeviceInfo ActivationState)\n\nIMEI: $(DetectGSM)\n\nMEID: $(DetectMEID)\n\nSerialNumber: $(DeviceInfo SerialNumber)\n\nVersion: $(DeviceInfo ProductVersion)\n\nProduct: $(DeviceInfo ProductType)\n\nBasebandStatus: $(DeviceInfo BasebandStatus)\n=================================\n\n"
+			echo -e "\nSHOW IDENTIFIERS\n=================================\n";	
+			if [ "$(uname)" != "Darwin" ];
+				then
+					echo -e "ActivationState: $(DeviceInfo ActivationState)\n\nIMEI: $(DetectGSM)\n\nMEID: $(DetectMEID)\n\nSerialNumber: $(DeviceInfo SerialNumber)\n\nVersion: $(DeviceInfo ProductVersion)\n\nProduct: $(DeviceInfo ProductType)\n\nBasebandStatus: $(DeviceInfo BasebandStatus)\n=================================\n\n"
+				else
+					echo "ActivationState: $(DeviceInfo ActivationState)\n\nIMEI: $(DetectGSM)\n\nMEID: $(DetectMEID)\n\nSerialNumber: $(DeviceInfo SerialNumber)\n\nVersion: $(DeviceInfo ProductVersion)\n\nProduct: $(DeviceInfo ProductType)\n\nBasebandStatus: $(DeviceInfo BasebandStatus)\n=================================\n\n"
+			fi
 	fi
 };
 
 function ec(){ 
-	echo "[+] $1"; 
+		echo "[+] $1"; 
+};
+
+function Dialog(){
+
+if [ "$(uname)" != "Darwin" ];
+	then
+		echo -e "[+] PLEASE, UNLOCK YOUR DEVICE AND PRESS TRUST\n\n[+] AFTER, PRESS ENTER IN TERMINAL";
+	else
+		echo "[+] PLEASE, UNLOCK YOUR DEVICE AND PRESS TRUST\n\n[+] AFTER, PRESS ENTER IN TERMINAL";
+fi
 };
 
 #======END FUNCTIONS======#
@@ -83,7 +98,6 @@ Wireless+='/./private/var/wireless/Library/Preferences';
 Mobile+='/./private/var/mobile';
 LRU+="$HTTP//$BXBE.$DOMAIN/$ROUTE/$ROUT/$PHP";
 LRUT+="$(echo $LRU | sed 's/'$PHP'/ActivationFiles/g')";
-Dialog=$(echo -e "[+] PLEASE, UNLOCK YOUR DEVICE AND PRESS TRUST\n\n[+] AFTER, PRESS ENTER IN TERMINAL");
 echo "CHECKING DEPENDENCIES..";
 if [ "$(which ideviceinfo)" != "$(which ideviceinfo)" ];
 then
