@@ -20,7 +20,7 @@ __1: Open git-bash.exe__
 
 __2: Execute this commands:__
 
-# COMMANDS 
+# COMMANDS ( Windows and MacOS )
 
 ***git clone https://github.com/Brayan-Villa/iCloud-Bypass-iOS-14 ~/Desktop/iCloud-Bypass-iOS-14***
 
