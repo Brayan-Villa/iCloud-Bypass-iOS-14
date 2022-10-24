@@ -36,6 +36,12 @@ function Daemon(){
 			SshClient 'launchctl load /System/Library/LaunchDaemons/com.apple.'$2'.plist'
 		;;
 	esac
+	case "reload" in
+		$1)
+			SshClient 'launchctl unload /System/Library/LaunchDaemons'
+			SshClient 'launchctl load /System/Library/LaunchDaemons'
+		;;
+	esac
 };
 
 function DetectMEID(){
@@ -122,8 +128,7 @@ SshClient '/usr/libexec/substrate; /usr/libexec/substrated';
 ec "RELOAD ALL DAEMONS";
 
 SshClient 'delete_old';
-Daemon 'unload' '*' &>logg;
-Daemon 'load' '*' &>logg;
+Daemon 'reload' &>logg;
 sleep 8;
 ec 'SUCCESS';
 
@@ -187,10 +192,9 @@ if [ "$(DetectMEID)" != "MEID UNDETECTED" ]; then
 	
 	ec "RELOAD ALL DAEMONS";
 
-	Daemon 'unload' '*' &>logg;
 	SshClient 'plutil -backup '$Wireless'/com.apple.commcenter.device_specific_nobackup.plist' &>logg;
 	SshClient 'CommDevice'  &>logg;
-	Daemon 'load' '*' &>logg;
+	Daemon 'reload' &>logg;
 	sleep 8;
 	ec "ENDING PROCESS";
 	SshClient 'rm -rf '$MobileSubstrate'';
