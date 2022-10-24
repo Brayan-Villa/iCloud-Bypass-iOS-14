@@ -164,7 +164,7 @@ ec 'SUCCESS';
 ec "ACTIVATING DEVICE....";
 
 if [ "$(idevicepair pair)" != "SUCCESS: Paired with device $(DeviceInfo UniqueDeviceID)" ]; then 
-read -p "$Dialog"; idevicepair pair &>logg;
+read -p "$(Dialog)"; idevicepair pair &>logg;
 fi
 ideviceactivation activate -d -s  "$LRU" &>ActivationLog.txt;
 if [ "$(DeviceInfo ActivationState)" == "FactoryActivated" ]; then ec "SUCCESSFULLY ACTIVATED!"; fi;
